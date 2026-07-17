@@ -64,7 +64,7 @@ return(
             <h1>{farmer.name}</h1>
 
             <p>
-                kjwecjwcjw kjwnfjnwjoef Welcome to your Farm2Home Farmer Dashboard ,
+                 Welcome to your Farm2Home Farmer Dashboard ,
             </p>
 
         </div>
