@@ -101,12 +101,7 @@ router.get("/profile", kavach, (req, res) => {
 
     connection.query(
         `SELECT
-            id,
-            name,
-            email,
-            address,
-            phone,
-            apin
+            id,name,email,address,phone,apin
         FROM farmer
         WHERE id = ?`,
         [farmerId],
@@ -127,5 +122,23 @@ router.get("/profile", kavach, (req, res) => {
         }
     );
 
+});
+
+
+// profile CRUD operation 
+
+router.put("/update-profile",kavach,(req,res)=>{
+    const farmerId = req.user.id;
+    const { name , phone , address ,apin} = req.body;
+    const sql = ` UPDATE farmer SET name = ? , phone = ? , address = ? , apin = ? WHERE id = ? `;
+    connection.query(sql, [name, phone, address , apin,farmerId], (err,result)=>{
+        if(err){
+            return res.status(500).json(err);
+        }
+        if(result.affectedRows === 0){
+            return res.status(400).json({message :"the data is not found"});
+        }
+        res.json({succes:true, message :"profile update successfully"});
+    }) ;
 });
 module.exports = router;
