@@ -1,17 +1,11 @@
 "use client";
 
-import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "./page.css";
-
-type Decodetoken = {
- id: number;
- name: string;
- email: string;
-}
+import axios from "axios";
 
 function Header() {
     const router = useRouter();
@@ -21,13 +15,34 @@ function Header() {
     }
 
     const [user, setUser] = useState("");
-    useEffect(() => {
+    const fetchProfile = async () => {
+    try {
         const token = localStorage.getItem("token");
-        if (token) {
-            const decoded: Decodetoken = jwtDecode(token);
-            setUser(decoded.name)
-        }
-    }, [])
+
+        const res = await axios.get("http://localhost:5000/customer/profile",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        setUser(res.data.name);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
+    useEffect(() => {
+
+    fetchProfile();
+
+    window.addEventListener("profileUpdated", fetchProfile);
+
+    return () => { window.removeEventListener("profileUpdated",fetchProfile );
+    };
+
+}, []);
 
     return (
         <header className="header">

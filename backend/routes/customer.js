@@ -176,6 +176,21 @@ router.get("/profile", kavach, (req, res) => {
 
 });
 
+router.put("/update-profile-cust",kavach,(req,res)=>{
+    const customerId = req.user.id;
+    const {name,phone,address,areapin} = req.body;
+    const sql = `UPDATE customer SET name=? , phone =?, address =? , areapin = ? WHERE id = ?`;
+    connection.query(sql,[name,phone,address,areapin,customerId],(err,result)=>{
+        if(err){
+            return res.status(500).json(err);
+        }
+        if(result.affectedRows === 0){
+            return res.status(400).json({message:"data not found"});
+        }
+        res.json({success:true,message:"profile update successfully"})
+    });
+});
+
 
 
 module.exports = router;
