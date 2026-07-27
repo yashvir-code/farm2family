@@ -1,0 +1,49 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.dashboard-layout{
+
+    min-height:100vh;
+
+    background:#f5f5f5;
+
+}
+
+.dashboard-body{
+
+    display:flex;
+
+}
+
+.dashboard-content{
+
+    flex:1;
+
+    padding:25px;
+
+}
+
+.dashboard-title{
+
+    font-size:30px;
+
+    margin-bottom:30px;
+
+    color:#2E7D32;
+
+}
+
+.dashboard-cards{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+

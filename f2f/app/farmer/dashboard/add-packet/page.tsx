@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./add-packet.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -60,6 +60,31 @@ function page() {
         formRef.current?.reset();
         router.push("/farmer/dashboard")
     }
+
+    const checkStatus = async () => {
+
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(
+        "http://localhost:5000/farmer/check-status",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
+
+    if (res.data.status !== "Verified") {
+        alert("❌ Your account is not verified by Admin.");
+
+        router.push("/farmer/dashboard");
+    }
+
+};
+
+useEffect(() => {
+    checkStatus();
+}, []);
 
     return (
 

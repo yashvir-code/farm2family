@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const SECRET_KEY = "001122";
+const SECRET_KEY = "012012";
 
 function kavach(req, res, next) {
 

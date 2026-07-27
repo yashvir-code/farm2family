@@ -36,6 +36,8 @@ export default function page() {
         fetchdata();
     }, []);
 
+    
+
     return (
         <div className="earnings-page">
 

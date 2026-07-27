@@ -12,6 +12,7 @@ router.get("/my-packet", kavach, (req, res) => {
                 p.id,
                 p.farmname,
                 p.listing_title,
+                p.status,
                 p.basket_size,
                 p.farm_address,
                 p.pincode,
@@ -45,6 +46,7 @@ router.get("/my-packet", kavach, (req, res) => {
                     id: row.id,
                     farmname: row.farmname,
                     listing_title: row.listing_title,
+                    status:row.status,
                     basket_size: row.basket_size,
                     farm_address: row.farm_address,
                     pincode: row.pincode,
@@ -77,6 +79,7 @@ router.get("/test", (req, res) => {
 router.get("/all-packets", kavach, (req, res) => {
     const sql = `SELECT 
                 p.id,
+                p.status,
                 p.farmname,
                 p.listing_title,
                 p.basket_size,
@@ -107,6 +110,7 @@ router.get("/all-packets", kavach, (req, res) => {
             if (!groupbasket[row.id]) {
                 groupbasket[row.id] = {
                     id: row.id,
+                    status: row.status,
                     farmname: row.farmname,
                     listing_title: row.listing_title,
                     basket_size: row.basket_size,
@@ -214,14 +218,16 @@ router.get("/farmer-order",kavach,(req,res)=>{
         //  console.log(result);
 
          if(err){
-            return res.status(500).json(err);
-         }
-         if(result.length === 0){
-            return res.json({
-                message:"database m error h",
+    console.log("SQL ERROR :",err);
+    return res.status(500).json({
+        message:"SQL Error",
+        error:err.sqlMessage
+    });
+}  
 
-            });
-         }
+        if(result.length === 0){
+    return res.json([]);
+}
 
         const grouporder = {};
         result.forEach((row)=>{
@@ -249,8 +255,8 @@ router.get("/farmer-order",kavach,(req,res)=>{
         });
         res.json(Object.values(grouporder));
 
-    })
-})
+    });
+});
 
 // yaha total ernig of farmer , delivered , panding order count karne ki API 
 

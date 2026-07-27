@@ -1,0 +1,53 @@
+.pending-container{
+    padding:25px;
+}
+
+.pending-container h2{
+    color:#2E7D32;
+    margin-bottom:20px;
+}
+
+.pending-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+}
+
+.pending-table th,
+.pending-table td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:left;
+}
+
+.pending-table th{
+    background:#2E7D32;
+    color:#fff;
+}
+
+.pending-table button{
+    background:#2E7D32;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.pending-table button:hover{
+    background:#1B5E20;
+}
+.verify-btn{
+    background:#2e7d32;
+    color:#fff;
+    border:none;
+    padding:8px 16px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:14px;
+    transition:.3s;
+}
+
+.verify-btn:hover{
+    background:#1b5e20;
+}

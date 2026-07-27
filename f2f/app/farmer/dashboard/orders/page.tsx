@@ -19,7 +19,13 @@ export default function page() {
 
 
             );
-            setOrders(res.data);
+            console.log(JSON.stringify(res.data, null, 2));
+            if(Array.isArray(res.data)){
+    setOrders(res.data);
+}
+else{
+    setOrders([]);
+}
         }
         catch (err) {
             console.log(err);
@@ -57,7 +63,11 @@ export default function page() {
             console.log(err);
             alert("Status update failed");
         }
+
+        
     };
+
+    
     return (
         <div>
             <div className="order-header"><h1>Customer Order</h1><p>Manage all orders placed for your vegetable baskets.</p></div>

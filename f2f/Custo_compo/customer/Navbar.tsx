@@ -20,8 +20,8 @@ function Navbar(){
         🛍 Browse Baskets
     </Link>
 
-    <Link href="/customer/dashboard_cust/my_subscriptions">
-        📦 My Subscription
+    <Link href="/customer/dashboard_cust/membership-plan">
+        📦 Membership Plan
     </Link>
 
     <Link href="/customer/dashboard_cust/myorder">

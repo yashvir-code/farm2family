@@ -5,16 +5,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const kavach = require("../middleware/auth");
 
-const SECRET_KEY = "001122";
+const SECRET_KEY = "012012";
 console.log("Customer Routes Loaded");
+
 router.post("/register_cust", (req, res) => {
-     console.log("Register API Hit");
-    console.log(req.body);
+                    console.log("Register API Hit");
+                    console.log(req.body);
+                    const { name, email, password, phone, areapin, address } = req.body;
 
-
-    const { name, email, password, phone, areapin, address } = req.body;
-
-    bcrypt.hash(password, 10, (err, hashedPassword) => {
+                     bcrypt.hash(password, 10, (err, hashedPassword) => {
 
         if (err) {
             return res.status(500).json({
@@ -175,6 +174,7 @@ router.get("/profile", kavach, (req, res) => {
     });
 
 });
+// profile details update APi 
 
 router.put("/update-profile-cust",kavach,(req,res)=>{
     const customerId = req.user.id;

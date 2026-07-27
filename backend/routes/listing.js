@@ -278,4 +278,25 @@ router.delete("/delete-packet/:id", kavach, (req, res) => {
     );
 });
 
+// status change API 
+router.put("/change-status",kavach,(req,res)=>{
+    const farmerId = req.user.id;
+    const {packet_id , status} = req.body;
+    const sql = `UPDATE packets SET status = ? WHERE id = ? AND farmer_id = ? `;
+    connection.query(sql,[status,packet_id,farmerId],(err,result)=>{
+        if(err){
+            return res.status(500).json(err)
+        }
+        if(result.affectedRows === 0 ){
+             return res.status(404).json({
+                    success: false,
+                    message: "Basket not found"
+                });
+        }
+         res.json({
+                success: true,
+                message: `Basket ${status} successfully`
+            });
+    }); 
+});
 module.exports = router;

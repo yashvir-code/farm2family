@@ -82,98 +82,153 @@ function page() {
     }, [search, packets])
 
     return (
-        <div className="browse-container">
-            <div className="browse-header">
-                <h1>🧺 Browse Fresh Baskets</h1>
-                <div className="search-box">
-                    <input
-                        type="text"
-                        placeholder="🔍 Search vegetables..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                </div>
-                <p>
-                    Fresh vegetables directly from trusted farmers.
-                    Healthy • Organic • Affordable
-                </p>
+    <div className="browse-container">
+
+        <div className="browse-header">
+            <h1>🧺 Browse Fresh Baskets</h1>
+
+            <p>
+                Fresh vegetables directly from trusted farmers.
+                Healthy • Organic • Affordable.
+            </p>
+
+            <div className="search-box">
+                <input
+                    type="text"
+                    placeholder="🔍 Search vegetables..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
             </div>
-            <div className="packet-grid">
+        </div>
 
-                {
-                    filteredpackets.length === 0 ? (
+        <div className="packet-grid">
 
-                        <h2
-                            style={{
-                                textAlign: "center", width: "100%", color: "#666"
-                            }}
-                        >No basket found.</h2>
+            {
+                filteredpackets.length === 0 ?
 
-                    ) : (
+                    (
+                        <h2 className="empty-text">
+                            No Basket Found
+                        </h2>
+                    )
+
+                    :
+
+                    (
 
                         filteredpackets.map((packet: any) => (
+
                             <div
-                                className="packet-card"
                                 key={packet.id}
+                                className={
+                                    packet.status === "Disabled"
+                                        ? "packet-card disabled-card"
+                                        : "packet-card"
+                                }
                             >
+
+                                <span
+                                    className={
+                                        packet.status === "Active"
+                                            ? "status-active"
+                                            : "status-disabled"
+                                    }
+                                >
+                                    {packet.status}
+                                </span>
+
                                 <img
                                     src={`http://localhost:5000/uploads/${packet.image}`}
                                     alt={packet.listing_title}
                                     className="packet-image"
                                 />
+
                                 <div className="packet-info">
+
                                     <h2>{packet.listing_title}</h2>
+
                                     <h3>🌾 {packet.farmname}</h3>
+
                                     <div className="details">
+
                                         <p>
-                                            📦 <b>Basket :</b>  {packet.basket_size} Kg
+                                            📦 <b>Basket :</b> {packet.basket_size} Kg
                                         </p>
+
                                         <p>
                                             📍 <b>Address :</b> {packet.farm_address}
                                         </p>
+
                                         <p>
-                                            📮 <b>Pincode :</b>{packet.pincode}
+                                            📮 <b>Pincode :</b> {packet.pincode}
                                         </p>
+
                                         <p>
                                             🌿 <b>Organic :</b> {packet.organic}
                                         </p>
+
                                     </div>
+
                                     <div className="vegetables">
-                                        <h4>
-                                            🥕 Included Vegetables
-                                        </h4>
-                                        {packet.vegetable.map(
-                                            (
-                                                veg: any,
-                                                index: number
-                                            ) => (
+
+                                        <h4>🥕 Included Vegetables</h4>
+
+                                        {
+                                            packet.vegetable.map((veg: any, index: number) => (
+
                                                 <p key={index}>
                                                     • {veg.vegetable_name}
-                                                    {" "}
                                                     ({veg.quantity} Kg)
                                                 </p>
-                                            )
-                                        )}
+
+                                            ))
+                                        }
+
                                     </div>
+
                                     <div className="card-footer">
-                                        <div className="price"> ₹ {packet.price} </div>
+
+                                        <div className="price">
+                                            ₹ {packet.price}
+                                        </div>
+
                                         <button
-                                            className="buy-btn"
+
+                                            disabled={packet.status === "Disabled"}
+
+                                            className={
+                                                packet.status === "Active"
+                                                    ? "buy-btn"
+                                                    : "disabled-order-btn"
+                                            }
+
                                             onClick={() => handleBuy(packet.id)}
+
                                         >
-                                            🛒 Buy Now
+
+                                            {
+                                                packet.status === "Active"
+                                                    ? "🛒 Buy Now"
+                                                    : "🚫 Currently Unavailable"
+                                            }
+
                                         </button>
+
                                     </div>
+
                                 </div>
+
                             </div>
 
                         ))
 
                     )
-                }
 
-            </div>
+            }
 
         </div>
-    );
+
+    </div>
+);
 } export default page;

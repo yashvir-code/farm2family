@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const kavach = require("../middleware/auth");
 
-const SECRET_KEY = "001122";
+const SECRET_KEY = "012012";
 
 router.post("/register", (req, res) => {const { name, password, phone, email, address, apin } = req.body;
     console.log(name, apin);
@@ -140,5 +140,40 @@ router.put("/update-profile",kavach,(req,res)=>{
         }
         res.json({succes:true, message :"profile update successfully"});
     }) ;
+});
+
+// verify hua h kinahi farmer us k liye
+
+router.get("/check-status", kavach, (req, res) => {
+
+    const sql = `
+        SELECT status
+        FROM farmer
+        WHERE id = ?
+    `;
+
+    connection.query(sql, [req.user.id], (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Farmer Not Found"
+            });
+        }
+
+        res.json({
+            success: true,
+            status: result[0].status
+        });
+
+    });
+
 });
 module.exports = router;

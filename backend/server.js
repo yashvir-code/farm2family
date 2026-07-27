@@ -7,6 +7,8 @@ const customerRoutes = require("./routes/customer");
 const listingRoutes = require("./routes/listing");
 const fetchRoutes = require("./routes/fetch");
 const orderRoutes = require("./routes/orders");
+const membershipRoutes =  require("./routes/membership");
+const adminRoutes = require("./routes/admin");
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use("/customer", customerRoutes);
 app.use("/listing", listingRoutes);
 app.use("/fetch", fetchRoutes);
 app.use("/orders",orderRoutes);
+app.use("/membership",membershipRoutes);
+app.use("/admin", adminRoutes);
 
 const PORT = 5000;
 
