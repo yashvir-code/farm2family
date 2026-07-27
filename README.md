@@ -4,13 +4,24 @@ Farm2Family is a full-stack web application that connects farmers directly with 
 
 ## Features
 
+### Admin
+- Admin Login
+- JWT Authentication
+- Dashboard Analytics
+- Farmer Verification (Pending → Verified)
+- Membership Management (View, Edit, Delete)
+- Subscribers Management
+- Admin Profile
+
 ### Farmer
 - Farmer Registration & Login
 - JWT Authentication
 - Farmer Dashboard
 - Add Vegetable Packets
-- Edit/Delete Packets
-- View Orders
+- Edit Packets
+- Enable / Disable Packets
+- View My Packets
+- View & Manage Orders
 - Earnings Dashboard
 
 ### Customer
@@ -20,6 +31,8 @@ Farm2Family is a full-stack web application that connects farmers directly with 
 - Place Orders
 - Order History
 - Profile Management
+
+---
 
 ## 🛠 Tech Stack
 
@@ -41,15 +54,15 @@ Farm2Family is a full-stack web application that connects farmers directly with 
 - bcrypt
 
 ### Other Libraries
-- Multer
 - Axios
+- Multer
 - CORS
 
 ---
 
 ## Project Structure
 
-```
+```text
 Farm2Family/
 │
 ├── backend/
@@ -61,7 +74,7 @@ Farm2Family/
 │
 ├── f2f/
 │   ├── app/
-│   ├── components/
+│   ├── admin_component/
 │   ├── public/
 │   └── package.json
 │
@@ -98,19 +111,34 @@ npm run dev
 
 ## Current Status
 
-- ✅ Customer Authentication
-- ✅ Farmer Authentication
-- ✅ Farmer Dashboard
-- ✅ Customer Dashboard
-- ✅ Packet Management
-- ✅ Orders Module
-- 🚧 Subscription Module (In Progress)
-- 🚧 AI Recommendation System (Planned)
+### Completed
+- Customer Authentication
+- Farmer Authentication
+- Admin Authentication
+- Admin Dashboard
+- Dashboard Analytics
+- Farmer Verification System
+- Packet Management
+- Orders Module
+- Membership Management (Admin)
+- Subscribers Management
+- Farmer Earnings Dashboard
+
+### In Progress
+- Customer Subscription Integration
+- Membership Purchase Flow
+- Subscription-based Order Access
+
+### Planned
+- AI Recommendation System
+- Reward System
+- Delivery Tracking
+- Notification System
 
 ---
 
-## 👨‍💻 Developer
+## Developer
 
-**Yashvir Singh Parihar**
+Yashvir Singh Parihar
 
 B.Tech (Computer Science Engineering)
