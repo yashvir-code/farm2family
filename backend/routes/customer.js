@@ -191,6 +191,152 @@ router.put("/update-profile-cust",kavach,(req,res)=>{
     });
 });
 
+router.get("/check-membership", kavach, (req, res) => {
 
+    const customerId = req.user.id;
 
+    const sql = `
+        SELECT
+            subscription_status,
+            subscription_plan,
+            subscription_end
+        FROM customer
+        WHERE id = ?
+    `;
+
+    connection.query(sql, [customerId], (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Customer Not Found"
+            });
+        }
+
+        const customer = result[0];
+
+        // Membership active hai aur expiry date future me hai
+        if (
+            customer.subscription_status === "Active" &&
+            customer.subscription_end &&
+            new Date(customer.subscription_end) >= new Date()
+        ) {
+            return res.json({
+                success: true,
+                member: true,
+                planId: customer.subscription_plan,
+                expiry: customer.subscription_end
+            });
+        }
+
+        // Membership nahi hai ya expire ho chuki hai
+        res.json({
+            success: true,
+            member: false
+        });
+
+    });
+
+});
+
+// Customer Membership Details
+
+router.get("/my-membership", kavach, (req, res) => {
+
+    const customerId = req.user.id;
+
+    const sql = `
+        SELECT
+            c.subscription_status,
+            c.subscription_start,
+            c.subscription_end,
+
+            m.plan_name,
+            m.duration,
+            m.price,
+            m.description
+
+        FROM customer c
+
+        LEFT JOIN membership m
+        ON c.subscription_plan = m.id
+
+        WHERE c.id = ?
+    `;
+
+    connection.query(sql, [customerId], (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Customer Not Found"
+            });
+        }
+
+        res.json({
+            success: true,
+            membership: result[0]
+        });
+
+    });
+
+});
+
+router.get("/membership-details", kavach, (req, res) => {
+
+    const customerId = req.user.id;
+
+    const sql = `
+        SELECT
+            c.subscription_status,
+            c.subscription_start,
+            c.subscription_end,
+            m.plan_name,
+            m.duration,
+            m.price,
+            m.description
+        FROM customer c
+        LEFT JOIN membership m
+        ON c.subscription_plan = m.id
+        WHERE c.id = ?
+    `;
+
+    connection.query(sql, [customerId], (err, result) => {
+
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Customer Not Found"
+            });
+        }
+
+        res.json({
+            success: true,
+            membership: result[0]
+        });
+
+    });
+
+});
 module.exports = router;
