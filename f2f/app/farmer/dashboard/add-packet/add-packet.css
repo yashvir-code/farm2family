@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -132,4 +132,324 @@ hr{
         font-size:22px;
     }
 
+} */
+
+
+/* =========================================
+   ADD PACKET / CREATE BASKET PAGE
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f2;
+    color: #333;
+}
+
+
+/* =========================================
+   MAIN FORM
+========================================= */
+
+form {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2ebe0;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group > label {
+    display: block;
+    margin-bottom: 8px;
+    color: #285c2c;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUT / SELECT / TEXTAREA
+========================================= */
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccd8ca;
+    border-radius: 9px;
+    outline: none;
+    background: #ffffff;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    height: 45px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.12);
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+}
+
+
+/* =========================================
+   VEGETABLE ROW
+========================================= */
+
+.vegetable-row {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 18px;
+    padding: 18px;
+    margin-bottom: 15px;
+    border: 1px solid #dfe9dd;
+    border-radius: 12px;
+    background: #f8fbf7;
+}
+
+
+/* =========================================
+   ADD VEGETABLE BUTTON
+========================================= */
+
+.add-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0 22px;
+    padding: 12px 18px;
+    border: 1px dashed #4caf50;
+    border-radius: 9px;
+    background: #f1f8f1;
+    color: #2e7d32;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.add-btn:hover {
+    background: #e2f2e3;
+    border-color: #2e7d32;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   AUTO BASKET SIZE
+========================================= */
+
+.form-group input[readonly] {
+    background: #eef7ed;
+    color: #2e7d32;
+    font-weight: 700;
+    border-color: #c9dfc7;
+    cursor: default;
+}
+
+
+/* =========================================
+   RADIO BUTTON
+========================================= */
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 12px 14px;
+    border: 1px solid #ccd8ca;
+    border-radius: 9px;
+    background: #ffffff;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2e7d32;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   FILE INPUT
+========================================= */
+
+.form-group input[type="file"] {
+    padding: 10px;
+    cursor: pointer;
+    background: #fafcfa;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 8px 13px;
+    border: none;
+    border-radius: 6px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background: #c8e6c9;
+}
+
+
+/* =========================================
+   CREATE BASKET BUTTON
+========================================= */
+
+.submit-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #2e7d32;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
+}
+
+.submit-btn:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(46, 125, 50, 0.25);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    form {
+        width: 94%;
+        margin: 25px auto;
+        padding: 25px;
+    }
+
+    .vegetable-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 15px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 500px) {
+
+    form {
+        width: 95%;
+        margin: 15px auto;
+        padding: 20px 16px;
+        border-radius: 13px;
+    }
+
+    .form-group {
+        margin-bottom: 17px;
+    }
+
+    .form-group > label {
+        font-size: 14px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        height: 43px;
+        font-size: 13px;
+    }
+
+    .form-group textarea {
+        font-size: 13px;
+    }
+
+    .vegetable-row {
+        padding: 13px;
+    }
+
+    .radio-group {
+        gap: 20px;
+    }
+
+    .add-btn {
+        font-size: 13px;
+    }
+
+    .submit-btn {
+        padding: 13px;
+        font-size: 15px;
+    }
 }

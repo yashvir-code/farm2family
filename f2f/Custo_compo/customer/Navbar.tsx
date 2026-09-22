@@ -17,7 +17,7 @@ function Navbar(){
     </Link>
 
     <Link href="/customer/dashboard_cust/browse_basket">
-        🛍 Browse Baskets
+        🥕 Browse Baskets
     </Link>
 
     <Link href="/customer/dashboard_cust/membership-plan">

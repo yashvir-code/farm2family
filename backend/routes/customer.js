@@ -339,4 +339,80 @@ router.get("/membership-details", kavach, (req, res) => {
     });
 
 });
+
+// Create COD Orders
+router.post("/create-cod-order", kavach, (req, res) => {
+    const customerId = req.user.id;
+    const {
+        items,
+        delivery_address
+    } = req.body;
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Cart is empty"
+        });
+    }
+
+    if (!delivery_address) {
+        return res.status(400).json({
+            success: false,
+            message: "Delivery address is required"
+        });
+    }
+
+    const orderValues = [];
+
+    items.forEach((item) => {
+        orderValues.push([
+            customerId,
+            item.id,
+            item.farmer_id,
+            Number(item.price) * Number(item.quantity),
+            delivery_address,
+            "Cash on Delivery",
+            "Pending",
+            "Pending"
+        ]);
+    });
+
+    const sql = `
+        INSERT INTO orders
+        (
+            customer_id,
+            packet_id,
+            farmer_id,
+            price,
+            delivery_address,
+            payment_method,
+            payment_status,
+            order_status
+        )
+        VALUES ?
+    `;
+
+    connection.query(sql, [orderValues], (err, result) => {
+        if (err) {
+            console.log("COD ORDER ERROR:", err);
+
+            return res.status(500).json({
+                success: false,
+                message: "Failed to create order",
+                error: err.sqlMessage
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "COD Order Placed Successfully",
+            orderIds: Array.from(
+                { length: result.affectedRows },
+                (_, index) => result.insertId + index
+            )
+        });
+    });
+});
+
+
 module.exports = router;

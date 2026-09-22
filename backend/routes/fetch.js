@@ -79,6 +79,7 @@ router.get("/test", (req, res) => {
 router.get("/all-packets", kavach, (req, res) => {
     const sql = `SELECT 
                 p.id,
+                p.farmer_id,
                 p.status,
                 p.farmname,
                 p.listing_title,
@@ -94,22 +95,30 @@ router.get("/all-packets", kavach, (req, res) => {
                 FROM packets p
                 JOIN packet_vegetables pv
                 ON p.id = pv.packet_id
-                ORDER BY p.id DESC 
-                `;
+                ORDER BY p.id DESC`;
 
     connection.query(sql, (err, result) => {
         if (err) {
-            return res.status(500).json({ message: "database m error h " });
+            console.log(err);
+
+            return res.status(500).json({
+                message: "Database error"
+            });
         }
+
         if (result.length === 0) {
             return res.json([]);
         }
 
         const groupbasket = {};
+
         result.forEach((row) => {
+
             if (!groupbasket[row.id]) {
+
                 groupbasket[row.id] = {
                     id: row.id,
+                    farmer_id: row.farmer_id,
                     status: row.status,
                     farmname: row.farmname,
                     listing_title: row.listing_title,
@@ -120,22 +129,19 @@ router.get("/all-packets", kavach, (req, res) => {
                     image: row.image,
                     organic: row.organic,
                     price: row.price,
-
                     vegetable: []
                 };
-
             }
+
             groupbasket[row.id].vegetable.push({
                 vegetable_name: row.vegetable_name,
                 quantity: row.quantity
             });
-
         });
-        res.json(Object.values(groupbasket));
 
+        res.json(Object.values(groupbasket));
     });
 });
-
 // ye API customer side k my_order ki h 
 
 router.get("/my-order", kavach, (req, res) => {

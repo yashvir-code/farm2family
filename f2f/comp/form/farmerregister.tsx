@@ -28,15 +28,28 @@ function page({ onLogin }: Props) {
         address: add,
         apin: apin
       });
-      if (res.data) {
-        alert("registerd successfully");
-        formRef.current?.reset();
-        router.push("/");
-      }
+      if (res.data.success) {
+  alert("Registered successfully");
+  formRef.current?.reset();
+
+  setName("");
+  setPassword("");
+  setPhone("");
+  setMail("");
+  setAdd("");
+  setApin("");
+
+  router.push("/");
+}
     }
-    catch (err) {
-      console.log(err);
-    }
+    catch (err: any) {
+  console.log("Registration error:", err);
+
+  alert(
+    err.response?.data?.message ||
+    "Registration failed"
+  );
+}
   }
 
   return (
@@ -92,9 +105,9 @@ function page({ onLogin }: Props) {
         />
 
         <div className="register-text">
-          <button type="submit" className="register-btn farmer-btn" onClick={handle}>
-            Register
-          </button>
+          <button type="submit" className="register-btn farmer-btn">
+  Register
+</button>
           Already have an account?{" "}
           <button
             type="button"

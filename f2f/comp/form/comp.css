@@ -1,137 +1,185 @@
+/* =========================
+   FORM SIDE CONTAINER
+========================= */
 
-.login-container,
-.register-container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
+.login-container {
+    width: 100%;
+    min-height: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-sizing: border-box;
 }
+
+/* =========================
+   FORM CARD
+========================= */
 
 .login-card,
-.register-card{
-    width:100%;
-    max-width:430px;
-    background:#fff;
-    border-radius:15px;
-    padding:30px;
-    box-shadow:0 8px 25px rgba(0,0,0,.15);
+.register-card {
+    width: 100%;
+    max-width: 390px;
+    padding: 30px 32px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+    box-sizing: border-box;
 }
+
+/* =========================
+   TITLES
+========================= */
 
 .login-title,
 .register-title,
-.register-card h1{
-    text-align:center;
-    font-weight:bold;
-    margin-bottom:20px;
+.register-card h1 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
 }
+
+.register-card p {
+    margin: 0 auto 22px;
+    max-width: 260px;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================
+   INPUTS
+========================= */
 
 .login-input,
 .register-input,
 .register-card input,
-.register-card textarea{
-    width:100%;
-    padding:12px 15px;
-    margin:10px 0;
-    border:1px solid #ccc;
-    border-radius:8px;
-    outline:none;
-    font-size:15px;
-    transition:.3s;
+.register-card textarea {
+    width: 100%;
+    padding: 13px 14px;
+    margin: 7px 0;
+    border: 1px solid #d8d8d8;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: #333;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: 0.2s ease;
 }
 
 .login-input:focus,
 .register-input:focus,
 .register-card input:focus,
-.register-card textarea:focus{
-    border-color:#28a745;
-    box-shadow:0 0 6px rgba(40,167,69,.3);
+.register-card textarea:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 3px rgba(25,135,84,0.10);
 }
 
-.register-card textarea{
-    resize:none;
+.register-card textarea {
+    resize: none;
 }
+
+/* =========================
+   BUTTONS
+========================= */
 
 .login-btn,
-.register-btn{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:15px;
-    transition:.3s;
+.register-btn {
+    width: 100%;
+    margin-top: 13px;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.register-text{
-    text-align:center;
-    margin-top:20px;
-}
-
-.register-text .btn-link{
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.farmer-theme .login-card,
-.farmer-theme .register-card{
-    border-top:6px solid #28a745;
-}
-
-.farmer-theme .login-title,
-.farmer-theme .register-title{
-    color:#28a745;
-}
+/* Farmer */
 
 .farmer-btn,
-.farmer-theme .login-btn{
-    background:#28a745;
+.farmer-theme .login-btn {
+    background: #198754;
 }
 
 .farmer-btn:hover,
-.farmer-theme .login-btn:hover{
-    background:#1e7e34;
+.farmer-theme .login-btn:hover {
+    background: #146c43;
 }
 
-.farmer-theme .btn-link{
-    color:#28a745 !important;
-}
-
-/* ================= CUSTOMER ================= */
-
-.customer-theme .login-card,
-.customer-theme .register-card{
-    border-top:6px solid #0d6efd;
-}
-
-.customer-theme .login-title,
-.customer-theme h1{
-    color:#0d6efd;
-}
+/* Customer */
 
 .customer-btn,
-.customer-theme .login-btn{
-    background:#0d6efd;
+.customer-theme .login-btn {
+    background: #1eb0ff;
 }
 
 .customer-btn:hover,
-.customer-theme .login-btn:hover{
-    background:#0b5ed7;
+.customer-theme .login-btn:hover {
+    background: #1eb0ff;
 }
 
-.customer-theme .btn-link{
-    color:#0d6efd !important;
+/* =========================
+   FORM BOTTOM TEXT
+========================= */
+
+.register-text {
+    margin-top: 18px;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.6;
 }
 
-
-@media(max-width:768px){
-
-.login-card,
-.register-card{
-    max-width:100%;
-    padding:20px;
+.register-text .btn-link,
+.register-card > .btn-link {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: #198754 !important;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
 }
 
+.customer-theme .register-text .btn-link {
+    color: #1eb0ff !important;
+}
+
+/* =========================
+   CUSTOMER THEME
+========================= */
+
+.customer-theme .login-card,
+.customer-theme .register-card {
+    border-top: 5px solid #1eb0ff;
+}
+
+.customer-theme .login-title,
+.customer-theme .register-title,
+.customer-theme .register-card h1 {
+    color: #1eb0ff;
+}
+
+/* =========================
+   FARMER THEME
+========================= */
+
+.farmer-theme .login-card,
+.farmer-theme .register-card {
+    border-top: 5px solid #198754;
+}
+
+.farmer-theme .login-title,
+.farmer-theme .register-title,
+.farmer-theme .register-card h1 {
+    color: #198754;
 }

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -9,6 +10,7 @@ const fetchRoutes = require("./routes/fetch");
 const orderRoutes = require("./routes/orders");
 const membershipRoutes =  require("./routes/membership");
 const adminRoutes = require("./routes/admin");
+const paymentRoutes = require("./routes/payment");
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use("/fetch", fetchRoutes);
 app.use("/orders",orderRoutes);
 app.use("/membership",membershipRoutes);
 app.use("/admin", adminRoutes);
+app.use("/payment", paymentRoutes);
 
 const PORT = 5000;
 

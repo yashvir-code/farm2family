@@ -135,6 +135,150 @@ router.put("/cancel-order", kavach, (req, res) => {
         res.json({ success: true, message: "Order canclled successfully." });
     });
 });
+
+// Place COD order from Cart
+router.post("/place-cod-order", kavach, (req, res) => {
+
+    const customerId = req.user.id;
+    const { items, delivery_address } = req.body;
+
+    console.log("COD Order Customer:", customerId);
+    console.log("COD Order Items:", items);
+
+    // Validate cart
+    if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Cart is empty"
+        });
+    }
+
+    // Validate address
+    if (!delivery_address || delivery_address.trim() === "") {
+        return res.status(400).json({
+            success: false,
+            message: "Delivery address is required"
+        });
+    }
+
+    // First check all packets
+    const packetIds = items.map((item) => item.id);
+
+    const placeholders = packetIds.map(() => "?").join(",");
+
+    const sql = `
+        SELECT 
+            id,
+            farmer_id,
+            price,
+            status
+        FROM packets
+        WHERE id IN (${placeholders})
+    `;
+
+    connection.query(
+        sql,
+        packetIds,
+        (err, packetResults) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Database error",
+                    error: err.sqlMessage
+                });
+            }
+
+            // Check all packets exist
+            if (packetResults.length !== packetIds.length) {
+                return res.status(400).json({
+                    success: false,
+                    message: "One or more baskets are not available"
+                });
+            }
+
+            // Check disabled baskets
+            const disabledPacket = packetResults.find(
+                (packet) => packet.status === "Disabled"
+            );
+
+            if (disabledPacket) {
+                return res.status(400).json({
+                    success: false,
+                    message: "One or more baskets are currently unavailable"
+                });
+            }
+
+            // Create order values
+            const orderValues = items.map((item) => {
+
+                const packet = packetResults.find(
+                    (p) => p.id === item.id
+                );
+
+                const quantity = Number(item.quantity) || 1;
+
+                const totalPrice =
+                    Number(packet.price) * quantity;
+
+                return [
+                    customerId,
+                    packet.id,
+                    packet.farmer_id,
+                    totalPrice,
+                    delivery_address,
+                    "Cash on Delivery",
+                    "Pending",
+                    "Pending"
+                ];
+            });
+
+            const insertSQL = `
+                INSERT INTO orders
+                (
+                    customer_id,
+                    packet_id,
+                    farmer_id,
+                    price,
+                    delivery_address,
+                    payment_method,
+                    payment_status,
+                    order_status
+                )
+                VALUES ?
+            `;
+
+            connection.query(
+                insertSQL,
+                [orderValues],
+                (err, result) => {
+
+                    if (err) {
+                        console.log("ORDER INSERT ERROR:", err);
+
+                        return res.status(500).json({
+                            success: false,
+                            message: "Failed to place order",
+                            error: err.sqlMessage
+                        });
+                    }
+
+                    const firstOrderId = result.insertId;
+                    const orderCount = result.affectedRows;
+
+                    res.json({
+                        success: true,
+                        message: "COD Order placed successfully",
+                        orderId: firstOrderId,
+                        orderCount: orderCount
+                    });
+                }
+            );
+        }
+    );
+});
 module.exports = router;
 
 

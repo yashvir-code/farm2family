@@ -64,7 +64,7 @@ function header() {
         <header className="header">
 
             <div className="logo">
-                🌾 Farm2Home
+                🌾 Farm2Family
             </div>
             <div className="greeting">
                 Welcome , <b>{farmername}</b>

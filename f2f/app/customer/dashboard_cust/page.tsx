@@ -1,6 +1,7 @@
 "use client";
 
 import "./page.css";
+import Link from "next/link";
 
 export default function page(){
 
@@ -22,11 +23,22 @@ export default function page(){
                         Eat healthy, support farmers and grow together.
                     </p>
                     <div className="hero-btns">
+                       
                         <button className="explore-btn">
-                            🥕 Explore Products
-                        </button>
+  <Link
+    href="/customer/dashboard_cust/browse_basket"
+    style={{ textDecoration: "none" , color : "black" }}
+  >
+    🥕 Explore Products
+  </Link>
+</button>
+
+
+
                         <button className="membership-btn">
-                            ⭐ Get Membership
+<Link href="/customer/dashboard_cust/membership-plan" style={{ textDecoration : "none" , color:"#a46619" }}>
+        ⭐ Get Membership
+    </Link> 
                         </button>
                     </div>
                     <div className="stats">

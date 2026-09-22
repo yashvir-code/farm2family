@@ -8,31 +8,55 @@ const kavach = require("../middleware/auth");
 
 const SECRET_KEY = "012012";
 
-router.post("/register", (req, res) => {const { name, password, phone, email, address, apin } = req.body;
-    console.log(name, apin);
-    bcrypt.hash(password, 10, function (err, hashedpassword) {
-        if (err) throw err;
-        console.log("password hashed", hashedpassword);
+router.post("/register", (req, res) => {
+    const { name, password, phone, email, address, apin } = req.body;
+
+    bcrypt.hash(password, 10, (err, hashedpassword) => {
+        if (err) {
+            console.log("Password hashing error:", err);
+            return res.status(500).json({
+                success: false,
+                message: "Unable to process password"
+            });
+        }
+
         const sql = `
             INSERT INTO farmer
-            ( name, email, password ,address,phone , apin )
+            (name, email, password, address, phone, apin)
             VALUES (?, ?, ?, ?, ?, ?)
         `;
-        connection.query(sql, [name, email, hashedpassword, address, phone, apin], function (err, result) {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({
-                    message: "database error",
-                    success: false,
-                    error: err.message
+
+        connection.query(
+            sql,
+            [name, email, hashedpassword, address, phone, apin],
+            (err, result) => {
+
+                if (err) {
+                    console.log("Registration Error:", err);
+
+                    if (err.code === "ER_DUP_ENTRY") {
+                        return res.status(409).json({
+                            success: false,
+                            message: "Email already registered"
+                        });
+                    }
+
+                    return res.status(500).json({
+                        success: false,
+                        message: "Database error"
+                    });
+                }
+
+                console.log("The user is registered");
+
+                return res.status(201).json({
+                    success: true,
+                    message: "Farmer registered successfully"
                 });
             }
-            console.log("the user is registered");
-            res.json({ message: "data inserted successfully", data: req.body });
-        });
+        );
     });
 });
-
 router.post("/login", (req, res) => {
     console.log(req.body);
     const { email, password } = req.body;
