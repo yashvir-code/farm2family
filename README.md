@@ -216,13 +216,13 @@ The project uses database modules for:
 - Packet Vegetables
 - Subscription-related data
 
-### Admin Access
+## Admin Access
 
-## Admin registration is restricted and is not available as a public registration option.
+### Admin registration is restricted and is not available as a public registration option.
 
 For demonstration purposes, a Demo Admin account can be provided for testing the Admin Panel.
 
-# Demo Admin
+### Demo Admin
 ```
 Admin Panel:
 https://YOUR-DOMAIN.com/admin
@@ -270,7 +270,6 @@ Anyone can create a farmer account from the application.
 
 > Depending on the application workflow, farmer accounts may require Admin verification before certain features become available.
 
----
 
 ##  Razorpay Test Mode
 
@@ -281,10 +280,11 @@ Razorpay credentials should be configured using environment variables:
 ```env
 RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY_ID
 RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_KEY_SECRET
+```
 
-# 📌 Current Status
+## Current Status
 
-## ✅ Completed
+### Completed
 
 - Customer Authentication
 - Farmer Authentication
@@ -305,7 +305,7 @@ RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_KEY_SECRET
 - Online Order Payment
 - Membership Payment Flow
 
-## 🚧 In Progress
+### In Progress
 
 - Admin-side Subscriber Management
 - Subscriber Count and Customer Subscription Tracking
@@ -313,7 +313,7 @@ RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_KEY_SECRET
 - Integration of Membership Status with Customer Orders
 - Admin Membership/Subscriber Management
 
-## 🔮 Planned
+### Planned
 
 - Forgot Password / Password Reset
 - AI Recommendation System
@@ -321,7 +321,6 @@ RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_KEY_SECRET
 - Delivery Tracking
 - Notification System
 - Additional AI-powered Features
----
 
 ### 👨‍💻 Developer
 Yashvir Singh Parihar
