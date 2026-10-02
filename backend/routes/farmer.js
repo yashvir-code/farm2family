@@ -13,7 +13,6 @@ router.post("/register", (req, res) => {
 
     bcrypt.hash(password, 10, (err, hashedpassword) => {
         if (err) {
-            console.log("Password hashing error:", err);
             return res.status(500).json({
                 success: false,
                 message: "Unable to process password"
@@ -58,18 +57,19 @@ router.post("/register", (req, res) => {
     });
 });
 router.post("/login", (req, res) => {
-    console.log(req.body);
     const { email, password } = req.body;
     connection.query(
         "SELECT * FROM farmer WHERE email = ?",
         [email],
         (err, result) => {
             if (err) {
-                return res.status(500).json({
-                    success: false,
-                    error: err.message
-                });
-            }
+    console.log("Farmer Login Database Error:", err.code);
+
+    return res.status(500).json({
+        success: false,
+        message: "Database Error"
+    });
+}
             if (!result || result.length === 0) {
                 return res.status(400).json({
                     success: false,
@@ -79,11 +79,13 @@ router.post("/login", (req, res) => {
             const user = result[0];
             bcrypt.compare(password, user.password, (err, match) => {
                 if (err) {
-                    return res.status(500).json({
-                        success: false,
-                        error: err.message
-                    });
-                }
+    console.log("Farmer Password Verification Error");
+
+    return res.status(500).json({
+        success: false,
+        message: "Login failed"
+    });
+}
                 if (!match) {
                     return res.status(400).json({
                         success: false,

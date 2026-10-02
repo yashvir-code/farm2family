@@ -6,7 +6,6 @@ const kavach = require("../middleware/auth");
 
 router.get("/my-packet", kavach, (req, res) => {
     const farmerId = req.user.id;
-    console.log("Logged in Farmer ID:", farmerId);
     const sql = `
        SELECT
                 p.id,

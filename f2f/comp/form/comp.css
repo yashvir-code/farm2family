@@ -183,3 +183,31 @@
 .farmer-theme .register-card h1 {
     color: #198754;
 }
+
+
+.success-message {
+  margin: 15px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  background: #e8f7e9;
+  color: #26733a;
+  border: 1px solid #9bd0a4;
+  text-align: center;
+  font-weight: 600;
+}
+
+.error-message {
+  margin: 15px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  background: #fdeaea;
+  color: #b42318;
+  border: 1px solid #e5aaa5;
+  text-align: center;
+  font-weight: 600;
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

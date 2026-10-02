@@ -6,11 +6,8 @@ const jwt = require("jsonwebtoken");
 const kavach = require("../middleware/auth");
 
 const SECRET_KEY = "012012";
-console.log("Customer Routes Loaded");
 
 router.post("/register_cust", (req, res) => {
-                    console.log("Register API Hit");
-                    console.log(req.body);
                     const { name, email, password, phone, areapin, address } = req.body;
 
                      bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -34,7 +31,6 @@ router.post("/register_cust", (req, res) => {
             (err, result) => {
 
                 if (err) {
-                    console.log(err);
                     return res.status(500).json({
                         success: false,
                         message: "Database Error",
@@ -67,7 +63,7 @@ router.post("/login", (req, res) => {
             if (err) {
                 return res.status(500).json({
                     success: false,
-                    error: err.message
+                     message: "Database Error"
                 });
             }
 
@@ -85,7 +81,7 @@ router.post("/login", (req, res) => {
                 if (err) {
                     return res.status(500).json({
                         success: false,
-                        error: err.message
+                         message: "Database Error"
                     });
                 }
 
@@ -124,7 +120,6 @@ router.post("/login", (req, res) => {
 
 
 router.get("/dashboard", kavach, (req, res) => {
-      console.log("Customer Route Working");
     res.json({
         success: true,
         message: "Welcome to Customer Dashboard",

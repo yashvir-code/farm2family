@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const kavach = require("../middleware/auth");
 
 const SECRET_KEY = '012012';
-console.log("admin routes loaded");
 
 router.post("/login-admin", (req, res) => {
     const { email, password } = req.body;

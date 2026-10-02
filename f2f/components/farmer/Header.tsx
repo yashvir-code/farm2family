@@ -78,7 +78,7 @@ function header() {
                 <button onClick={logout} className="logout-btn">Logout
 
                 </button>
-            </div>
+            </div>  
 
         </header>
     );

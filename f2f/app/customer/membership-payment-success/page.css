@@ -1,0 +1,301 @@
+.success-container {
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(101, 168, 107, 0.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(230, 154, 46, 0.13),
+            transparent 30%
+        ),
+        #fffaf0;
+}
+
+/* SUCCESS CARD */
+
+.success-card {
+    width: 100%;
+    max-width: 570px;
+    padding: 45px 42px;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e1e9dc;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 22px 60px rgba(49, 91, 54, 0.14);
+}
+
+.success-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(
+        90deg,
+        #65a86b,
+        #3f7042,
+        #e69a2e
+    );
+}
+
+/* SUCCESS ICON */
+
+.success-icon {
+    width: 88px;
+    height: 88px;
+    margin: 5px auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e9f6e7;
+    border: 5px solid #d4ebd1;
+    color: #3f7042;
+    font-size: 48px;
+    font-weight: 900;
+    box-shadow:
+        0 10px 25px rgba(63, 112, 66, 0.15),
+        inset 0 0 0 2px #ffffff;
+}
+
+/* TITLE */
+
+.success-card h1 {
+    margin: 0;
+    color: #315b36;
+    font-size: 32px;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+}
+
+.success-message {
+    max-width: 430px;
+    margin: 12px auto 30px;
+    color: #707870;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* DETAILS */
+
+.details {
+    padding: 8px 20px;
+    margin: 0 0 22px;
+    border: 1px solid #e4eadf;
+    border-radius: 18px;
+    background: #fbfcf8;
+    text-align: left;
+}
+
+.detail-row {
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid #e8ede5;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row span {
+    color: #727a71;
+    font-size: 14px;
+}
+
+.detail-row strong {
+    max-width: 60%;
+    color: #315b36;
+    font-size: 14px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.detail-row .paid {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #e8f6e6;
+    color: #3f7042;
+    font-size: 12px;
+}
+
+.detail-row .transaction {
+    color: #6b746b;
+    font-size: 12px;
+}
+
+/* NOTE */
+
+.success-note {
+    margin: 20px 0 25px;
+    padding: 15px 18px;
+    border-radius: 14px;
+    background: linear-gradient(
+        135deg,
+        #edf7e9,
+        #fff5df
+    );
+    border: 1px solid #e3eadc;
+    color: #55705a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* DASHBOARD BUTTON */
+
+.success-card button {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        #3f7042,
+        #65a86b
+    );
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 9px 22px rgba(63, 112, 66, 0.24);
+    transition: all 0.25s ease;
+}
+
+.success-card button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(
+        135deg,
+        #315b36,
+        #4f8c55
+    );
+    box-shadow: 0 13px 28px rgba(63, 112, 66, 0.30);
+}
+
+.success-card button:active {
+    transform: translateY(0);
+}
+
+/* DECORATION */
+
+.success-card::after {
+    content: "🌱";
+    position: absolute;
+    top: 22px;
+    right: 25px;
+    font-size: 25px;
+    opacity: 0.55;
+}
+
+/* TABLET */
+
+@media (max-width: 600px) {
+
+    .success-container {
+        padding: 30px 16px;
+    }
+
+    .success-card {
+        padding: 38px 25px;
+        border-radius: 23px;
+    }
+
+    .success-icon {
+        width: 78px;
+        height: 78px;
+        font-size: 42px;
+    }
+
+    .success-card h1 {
+        font-size: 28px;
+    }
+
+    .success-message {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .details {
+        padding: 5px 15px;
+    }
+
+    .detail-row {
+        min-height: 52px;
+        gap: 12px;
+    }
+
+    .detail-row span {
+        font-size: 13px;
+    }
+
+    .detail-row strong {
+        font-size: 13px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 420px) {
+
+    .success-container {
+        padding: 20px 12px;
+    }
+
+    .success-card {
+        padding: 35px 18px;
+        border-radius: 20px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 37px;
+        border-width: 4px;
+    }
+
+    .success-card h1 {
+        font-size: 24px;
+    }
+
+    .success-message {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .detail-row {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3px;
+        padding: 10px 0;
+    }
+
+    .detail-row strong {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .detail-row .paid {
+        font-size: 11px;
+    }
+
+    .success-note {
+        font-size: 12px;
+        padding: 13px;
+    }
+
+    .success-card button {
+        padding: 14px;
+    }
+}

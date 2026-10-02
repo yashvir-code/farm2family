@@ -3,7 +3,6 @@ const router = express.Router();
 const connection = require("../db");
 const kavach = require("../middleware/auth");
 
-console.log("Order route is loaded");
 
 router.post("/place-order", kavach, (req, res) => {
 

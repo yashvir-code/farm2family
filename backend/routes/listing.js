@@ -5,7 +5,7 @@ const upload = require("../utils/upload");
 const kavach = require("../middleware/auth");
 const { json } = require("body-parser");
 
-console.log("Add Packet Route Loaded");
+
 
 router.post("/add-packet", kavach, upload.single("image"), (req, res) => {
 
